@@ -12,14 +12,18 @@ const Index = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [editingTodo, setEditingTodo] = useState<Todo | null>(null);
   const [activeFilter, setActiveFilter] = useState<string>("all");
+  const [loading, setLoading] = useState(false)
 
   //  Get all todos
   const fetchTodos = async () => {
     try {
+      setLoading(true)
       const res = await axios.get("/api/todos");
       setTodos(res.data.data);
     } catch (error) {
       console.error("Error fetching todos:", error);
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -116,14 +120,26 @@ const Index = () => {
                 </TabsList>
 
                 <Separator className="my-4" />
-
-                {["all", "start", "progress", "completed"].map((tab) => (
+                {/* {["all", "start", "progress", "completed"].map((tab) => (
                   <TabsContent key={tab} value={tab} className="mt-0">
                     <TodoList
                       todos={filteredTodos}
                       onEdit={handleEditTodo}
                       onDelete={handleDeleteTodo}
                     />
+                  </TabsContent>
+                ))} */}
+                {["all", "start", "progress", "completed"].map((tab) => (
+                  <TabsContent key={tab} value={tab} className="mt-0">
+                    {loading ? (
+                      <p>Fetching data...</p>
+                    ) : (
+                      <TodoList
+                        todos={filteredTodos}
+                        onEdit={handleEditTodo}
+                        onDelete={handleDeleteTodo}
+                      />
+                    )}
                   </TabsContent>
                 ))}
               </Tabs>
