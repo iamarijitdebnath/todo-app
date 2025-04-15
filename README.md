@@ -18,3 +18,26 @@ A full-stack Todo application built with **Next.js App Router**, **Drizzle ORM**
 ---
 
 ## 📁 Project Structure
+
+---
+
+## 🧱 Technologies Used
+
+-   **Next.js 14 (App Router)**
+-   **Drizzle ORM**
+-   **PostgreSQL**
+-   **Axios**
+-   **ShadCN UI**
+-   **Tailwind CSS**
+-   **Lucide Icons**
+
+---
+
+## 🛠️ Setup Instructions
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/your-username/nextjs-todo-app.git
+cd nextjs-todo-app
+```
